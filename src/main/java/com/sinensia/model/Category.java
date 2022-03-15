@@ -2,6 +2,7 @@ package com.sinensia.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Category implements java.io.Serializable{
 	@Column(name="categoryName")
 	private String nombre;
 	
-	@OneToMany(mappedBy="categoria")
+	@OneToMany(mappedBy="categoria", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Product> productos;
 	
 	public Category() {

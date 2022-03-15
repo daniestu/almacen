@@ -12,7 +12,6 @@ import org.hibernate.Transaction;
 
 import com.sinensia.dao.contracts.IDao;
 import com.sinensia.model.Category;
-import com.sinensia.model.Product;
 
 public class CategoryDao implements IDao<Category>{
 
@@ -29,12 +28,6 @@ public class CategoryDao implements IDao<Category>{
 			sessionObj = sessionFactory.getCurrentSession();
 			tx = sessionObj.beginTransaction();
 			categoryId = (Integer) sessionObj.save(category);
-			
-			for (Product product : category.getProductos()) {
-				ProductDao productDao = new ProductDao();
-				product.setCategoria(category);
-				productDao.save(product, sessionObj);
-			}
 			
 			tx.commit();
 			sessionObj.close();
@@ -77,11 +70,6 @@ public class CategoryDao implements IDao<Category>{
 			tx = sessionObj.beginTransaction();
 			Category instance = (Category) sessionObj.get("com.sinensia.model.Category", id);
 			
-			List<Product> productos = instance.getProductos();
-			for (Product product : productos) {
-				ProductDao productDao = new ProductDao();
-				productDao.delete(product.getIdProducto(), sessionObj);
-			}
 			sessionObj.delete(instance);
 			tx.commit();
 			sessionObj.close();

@@ -26,20 +26,23 @@ public class CategoyDaoTest {
 		List<Product> productosHerramientas = new ArrayList<Product>();
 		List<Product> productosBorrados = new ArrayList<Product>();
 		
+		Category category = new Category();
+		category.setNombre("Herramientas");
+		
+		Category category1 = new Category();
+		category1.setNombre("Deleted");
+		
 		Product martillo = new Product();
 		martillo.setNombre("martillo");
+		martillo.setCategoria(category);
 		productosHerramientas.add(martillo);
 		
 		Product borrado = new Product();
 		borrado.setNombre("borrado");
+		borrado.setCategoria(category1);
 		productosBorrados.add(borrado);
 		
-		Category category = new Category();
-		category.setNombre("Herramientas");
 		category.setProductos(productosHerramientas);
-		
-		Category category1 = new Category();
-		category1.setNombre("Deleted");
 		category1.setProductos(productosBorrados);
 		
 		CategoryDao categoryDaoBeforeClass = new CategoryDao();
@@ -69,9 +72,11 @@ public class CategoyDaoTest {
 		
 		Product product1 = new Product();
 		product1.setNombre("silla");
+		product1.setCategoria(category);
 		
 		Product product2 = new Product();
 		product2.setNombre("mesa");
+		product2.setCategoria(category);
 		
 		productos.add(product1);
 		productos.add(product2);
@@ -88,9 +93,11 @@ public class CategoyDaoTest {
 		
 		Product product1 = new Product();
 		product1.setNombre("pollo");
+		product1.setCategoria(category);
 		
 		Product product2 = new Product();
 		//product2.setNombre("patata");
+		product2.setCategoria(category);
 		
 		productos.add(product1);
 		productos.add(product2);
